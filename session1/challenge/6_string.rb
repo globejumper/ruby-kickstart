@@ -8,18 +8,11 @@
 # odds_and_evens("abcdefg",false)   # => "aceg"
 
 def odds_and_evens(string, return_odds)
-  n = string.length
-  odd_string = []
-  even_string = []
+  to_return = ""
   if return_odds == true
-    n.times {|x| odd_string.push(string[x]) if x %2 !=0}
-
-    return odd_string.join
+    string.length.times {|x| to_return << (string[x]) if x.odd?}
   else
-    n.times {|x| even_string.push(string[x]) if x %2 ==0}
-    return even_string.join
+    string.length.times {|x| to_return << (string[x]) if x.even?}
   end
+  to_return
 end
-
-puts odds_and_evens("abcdefg",true)    # => "bdf"
-puts odds_and_evens("abcdefg",false)   # => "aceg"
