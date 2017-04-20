@@ -12,10 +12,7 @@
 class String
   def every_other_char
     arr = []
-    for i in 0..self.length-1 do
-      arr.push(self[i]) if i.even?
-
-    end
+    self.length.times {|i| arr << (self[i]) if i.even?}
     arr.join()
   end
 end
