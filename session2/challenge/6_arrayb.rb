@@ -15,16 +15,7 @@
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
 
-
-
-class Integer
-  def is_a_prime?
-    return false if self<2
-    2.upto(Math.sqrt(self)) {|x| return false if self % x == 0}
-    true
-  end
-end
-
+require "prime"
 def prime_chars?(array_of_strings)
-  array_of_strings.join.length.is_a_prime?
+  array_of_strings.join.length.prime?
 end
