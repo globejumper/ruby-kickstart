@@ -8,3 +8,23 @@
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
+def staircase(int)
+  stairhash = {}
+
+  if int < 0
+    return false
+  else
+    for x in (1..int) do
+      if x.odd?
+        array = []
+        for n in (1..x) do
+          array << n if n.even?
+        end
+        stairhash[x] = array
+      end
+
+    end
+  end
+  stairhash
+end
+# puts staircase(5)
