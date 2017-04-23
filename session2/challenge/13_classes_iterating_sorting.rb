@@ -64,3 +64,47 @@
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
 require 'date'
+
+class User
+
+  attr_accessor :username
+
+  def initialize(username)
+    self.username = username
+  end
+
+  def add_blog(date,text)
+    post = Blog.new(date,self,text)
+    blogs << post
+    post
+  end
+
+  def blogs
+    blogs = []
+  end
+
+
+end
+
+class Blog
+
+  attr_accessor :text, :date, :user
+
+  def initialize(date, user, text)
+    self.text = text
+    self.date = date
+    self.user = user
+  end
+
+  def summary
+
+  end
+
+end
+
+lissa = User.new 'QTSort'
+# puts lissa.username                  # => "QTSort"
+lissa.add_blog Date.parse("2010-05-28") , "Sailor Mars is my favourite"
+puts lissa.blogs
+blog1 = lissa.blogs.first
+puts blog1
