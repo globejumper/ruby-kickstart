@@ -29,5 +29,26 @@
 # create it from scratch :)
 
 
-def pathify
+def pathify(paths=Hash.new)
+
+  # anchor
+    return paths.map { |path| '/' + path } if paths.is_a? Array
+
+    path_arr = Array.new
+# reccursion
+    paths.each do |parent, child_dir|
+      parent = parent = "/" + parent
+      children = pathify child_dir #recurces on child dir
+      children.each do |child|
+        path_arr << (parent + child)  # writes out the path
+      end
+    end
+
+    return path_arr
+
 end
+
+
+
+
+#   'usr' => {'bin' => ['ruby'] }  => ['/usr/bin/ruby']
