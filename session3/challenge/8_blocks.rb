@@ -40,19 +40,19 @@ class Person
     @initializer.call self
   end
 end
+#
+# artist = Person.new :name => 'Prince' do |person|
+#   person.age   = 47
+#   person.quote = "Why don't you purify yourself in the waters of Lake Minnetonka?"
+# end
 
-artist = Person.new :name => 'Prince' do |person|
-  person.age   = 47
-  person.quote = "Why don't you purify yourself in the waters of Lake Minnetonka?"
-end
-
-puts artist.name
-puts artist.age
-puts artist.quote
-artist.name = "The Artist Formarly Known As Prince"
-puts artist.name
-artist.age = 1999
-puts artist.age
-artist.reinit
-puts artist.name
-puts artist.age
+# puts artist.name
+# puts artist.age
+# puts artist.quote
+# artist.name = "The Artist Formarly Known As Prince"
+# puts artist.name
+# artist.age = 1999
+# puts artist.age
+# artist.reinit
+# puts artist.name
+# puts artist.age
