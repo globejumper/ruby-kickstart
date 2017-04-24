@@ -17,25 +17,43 @@
 # end
 # order # => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
-def spiral_access([arr,&block,direction="right")
-  def spiral_access(arr, &block, x=0, y=0, direction="right")
+# Brendan:
+# def spiral_access([arr,&block,direction="right")
+#   def spiral_access(arr, &block, x=0, y=0, direction="right")
 # start by walking right
 # if we hit the right boundary, we start walking down
 #  a[1] a[2] a[3] b[-1] c[-1] c[-2] c[-3] b[1] b[2]
-
+# Lubos:
   # if we walk through the zeroeth array(0..array.length), then we walk the last values of arrays 1..#ofarrays
   #then we walk backwards in the last array then walk upwards (#ofarrays..1)
   # then we walk
   #how do you know not to walk the first array?
   #increment a counter by 1 of
-  walk[x[y]]
+  #walk[x[y]]
+    # One iteration is top right bottom left
+    # on each iteration, you go one less on the x axis and one less on the y axis
+    # when your iteration number and your array match, you've reached the middle?
 
 
-  walk x[y]
+def spiral_access(arrays, iteration=0, &block)
+  y_max = arrays.length - 1
+  x_max = arrays.first.length - 1
 
+  #anchor
+  return if y_max/2 < iteration || x_max/2 < iteration #stops the recursion when reaching this point
 
+  #top forward
+  iteration.upto(x_max-iteration) {|x| block.call arrays[iteration][x]}
 
+  #right column downwards
+  (iteration+1).upto(y_max-iteration) {|y| block.call arrays[y][x_max-iteration]}
 
-  # One iteration is top right bottom left
-  # on each iteration, you go one less on the x axis and one less on the y axis
-  # when your iteration number and your array match, you've reached the middle?
+  #bottom backward
+  (x_max - 1 - iteration).downto(iteration) {|x| block.call arrays[y_max-iteration][x]}
+
+  #left upwards
+  (y_max - 1 - iteration).downto(iteration+1) {|y| block.call arrays[y][iteration]}
+
+  #recursion
+  spiral_access arrays, iteration+1, &block
+end
