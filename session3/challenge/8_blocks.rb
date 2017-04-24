@@ -26,14 +26,33 @@
 
 
 class Person
-  attr_accessor :name
+  attr_accessor :name, :age, :quote
 
-  def initialize(&initializer)
-    @initializer = initializer
-    initializer.call self
+  def initialize(options=Hash.new, &initializer)
+    self.name   = options[:name]
+    self.age    = options[:age]
+    self.quote  = options[:quote]
+    @initializer = initializer || Proc.new { |person| }
+    reinit
   end
 
   def reinit
     @initializer.call self
   end
 end
+
+artist = Person.new :name => 'Prince' do |person|
+  person.age   = 47
+  person.quote = "Why don't you purify yourself in the waters of Lake Minnetonka?"
+end
+
+puts artist.name
+puts artist.age
+puts artist.quote
+artist.name = "The Artist Formarly Known As Prince"
+puts artist.name
+artist.age = 1999
+puts artist.age
+artist.reinit
+puts artist.name
+puts artist.age
