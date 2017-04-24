@@ -30,5 +30,8 @@
 # end
 
 
-def array_init
+def array_init(size=5, &block) #initializes the array with default size 5 and block passed
+  block ||= Proc.new {|e| (100 * e).to_s} # either passes the block
+  #or creates a new block with e myltiplied by 100 to default 5 places or a given ordinal parameter
+  Array.new(size, &block)
 end
