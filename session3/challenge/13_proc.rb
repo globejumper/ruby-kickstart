@@ -52,5 +52,51 @@
 #   end
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
-def your_sort
+# If proc is passed in, then for x in.. for n in..
+#
+
+#
+# def your_sort(array,&orderer)
+#   for x in 0...(array.length - 1) do
+#     for n in 0...(array.length - 1) do
+#     x = array[n]
+#     y = array[n+1]
+#     # print array.to_s + "\n"
+#     order = 0
+#     if orderer.nil?
+#       if x > y
+#         order = -1
+#       end
+#     else
+#       order = orderer.call(x,y)
+#     end
+#
+#     if order < 0
+#         array[n] = y
+#         array[n+1] = x
+#
+#       end
+#     end
+#     # puts "next iteration"
+#   end
+#   array
+# end
+# arr = [1,2]
+# print your_sort(arr)
+# p = Proc.new{|a, b| b <=> a}
+# 
+#
+# print your_sort(arr, &p)
+# puts your_sort([24, 0, 68, 44, 68, 47, 42, 66, 89, 22], &p)
+# print your_sort [24, 0, 68, 44, 68, 47, 42, 66, 89, 22]
+
+def your_sort( array , &orderer )
+  orderer ||= Proc.new { |a, b| a <=> b }
+
+  array.each_index do |index1|
+    array.each_index do |index2|
+      order = orderer.call(array[index1], array[index2])
+      array[index1], array[index2] = array[index2], array[index1] if order < 0
+    end
+  end
 end
