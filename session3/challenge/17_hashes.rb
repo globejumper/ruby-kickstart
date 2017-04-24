@@ -7,3 +7,13 @@
 #
 # print_list_in_reverse head   # >> "1\n2\n"
 
+def print_list_in_reverse(head)
+  array = []
+  current_node = head
+  array << current_node[:data]
+  while current_node[:next] != nil
+    current_node = current_node[:next]
+     array<<current_node[:data]
+  end
+  puts array.reverse
+end
