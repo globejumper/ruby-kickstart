@@ -38,3 +38,29 @@
 # middle head                        # => 3
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
+
+
+def middle(list)
+  current_node = list
+  counter = 0
+  while current_node[:next] != nil
+    current_node = current_node[:next]
+    counter += 1
+
+  end
+  counter = (counter/2.0).ceil
+  # puts counter
+  current_node =list
+  counter.times do
+    current_node = current_node[:next]
+  end
+current_node[:data]
+end
+#
+# head = {:data => 1, :next => nil}
+# head = {:data => 2, :next => head}
+# head = {:data => 3, :next => head}
+# head = {:data => 4, :next => head}
+# head = {:data => 5, :next => head}
+#
+# middle(head)
