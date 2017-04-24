@@ -10,20 +10,13 @@
 
 def staircase(int)
   stairhash = {}
-
-  if int < 0
-    return false
-  else
-    for x in (1..int) do
-      if x.odd?
-        array = []
-        for n in (1..x) do
-          array << n if n.even?
-        end
-        stairhash[x] = array
+  1.upto int do |x|
+    next if x.even?
+    array = []
+      for n in (1..x) do
+        array << n if n.even?
       end
-
-    end
+    stairhash[x] = array
   end
   stairhash
 end
