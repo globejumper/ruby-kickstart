@@ -17,5 +17,5 @@ def word_count(string)
   end
   hash
 end
-str = "The quick brown fox jumps over the lazy doggo because the quick brown fox is so very quick and shifty you know"
-puts word_count(str)
+# str = "The quick brown fox jumps over the lazy doggo because the quick brown fox is so very quick and shifty you know"
+# puts word_count(str)
